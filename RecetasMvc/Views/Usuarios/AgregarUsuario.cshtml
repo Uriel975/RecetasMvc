@@ -1,0 +1,58 @@
+﻿
+@{ ViewBag.Title = "AgregarUsuario";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+
+
+<div>
+    <h2>Agregar Usuario</h2>
+    <form id="formulario" method="post">
+
+        <div class="row  col-lg-12">
+            <div class="form-group col-md-4">
+                <label>Nombre(s)</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Nombre" maxlength="50">
+            </div>
+            <div class="form-col-md-3">
+                <label>Apellido(s)</label>
+                <input type="text" class="form-control" id="apellido" maxlength="50">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Genero</label>
+                <select class="form-group form-control" id="genero">
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row  col-lg-12">
+            <div class="form-group col-md-4">
+                <label>Correo</label>
+                <input type="email" class="form-control" id="correo" placeholder="Introducir Correo" maxlength="70">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Password</label>
+                <input type="password" class="form-control" id="contraseña" placeholder="Contraseña" maxlength="12">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Rol</label>
+                <select class="form-group form-control" id="rol" maxlength="20">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Cliente">Cliente</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+    </form>
+</div>
+
+<script src="~/Scripts/Usuario.js"></script>
+<script>$(function () {
+                Usuario.init();
+            });</script>
+
+
+

@@ -1,0 +1,190 @@
+﻿
+@{
+    Layout = null;
+}
+<DOCTYPE html>
+
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="apple-touch-icon" sizes="76x76" href="~/Content/CssAdmin/assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="~/Content/CssAdmin/assets/img/favicon.png">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>
+            Recetas Yucatan :)
+        </title>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+        <!-- CSS Files -->
+        <link href="~/Content/CssAdmin/assets/css/material-dashboard.css" rel="stylesheet" />
+
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="~/Content/CssAdmin/assets/demo/demo.css" rel="stylesheet" />
+        <script src="~/Content/jquery/dist/jquery.js"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
+        <link href="~/Content/Dialog/Dialog-ie.css" rel="stylesheet" />
+        <link href="~/Content/Dialog/Dialog.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </head>
+
+    <body class="dark-edition">
+        <div class="wrapper ">
+            <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+                <!--
+                Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+                Tip 2: you can also add an image using data-image tag
+            -->
+                <div class="logo">
+                    <a href="~/Views/Shared/_Layout.cshtml" class="simple-text logo-normal">
+                        Recetas Yucatan
+                    </a>
+                </div>
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+                        @{
+                            if ((Session["Rol"]).ToString() == "Administrador")
+                            {
+
+                                <li class="nav-item active  ">
+                                    <a class="nav-link" href="@Url.Content("~/Receta/Ver")">
+                                        <i class="material-icons">dashboard</i>
+                                        <p>R E C E T A</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Content("~/Usuarios/Ver")">
+                                        <i class="material-icons">persone</i>
+                                        <p>U S U A R I O</p>
+                                    </a>
+                                </li>
+                            }
+                            else if ((Session["Rol"]).ToString() == "Cliente")
+                            {
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Content("~/Ver/MisRecetas")">
+                                        <i class="material-icons">content_paste</i>
+                                        <p>Mis Recetas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Content("~/Receta/Agregar")">
+                                        <i class="material-icons">library_books</i>
+                                        <p>Nueva Receta</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Content("~/Ver/Publicaciones")">
+                                        <i class="material-icons">bubble_chart</i>
+                                        <p>Publicacion</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="./map.html">
+                                        <i class="material-icons">location_ons</i>
+                                        <p>Maps</p>
+                                    </a>
+                                </li>
+                            }
+                        }
+
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="@Url.Content("~/Acceso/CerrarSesion")">
+                                @*<icon*@
+                                <i class="material-icons">Cerrar sesion</i>
+                                <p>Cerrar Sesion</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main-panel">
+                <!-- Navbar -->
+                <nav style="position:static" class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+                    <div class="container-fluid">
+                        <div class="navbar-wrapper">
+                            <a class="navbar-brand" href="javascript:void(0)">Panel Administrativo<a>
+                        </div>
+                        
+                    </div>
+                </nav>
+                <div style="padding:50px">
+                    @RenderBody()
+                </div>
+            </div>
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="float-left">
+                            <ul>
+                                <li>
+                                    <a href="https://www.creative-tim.com">
+                                        Creative Tim
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://creative-tim.com/presentation">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://blog.creative-tim.com">
+                                        Blog
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.creative-tim.com/license">
+                                        Licenses
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright float-right" id="date">
+                            , made with <i class="material-icons">favorite</i> by
+                            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                        </div>
+                    </div>
+                </footer>
+                <script>
+                    const x = new Date().getFullYear();
+                    let date = document.getElementById('date');
+                    date.innerHTML = '&copy; ' + x + date.innerHTML;
+                </script>
+
+            </div>
+
+
+        <!--   Core JS Files   -->
+        <script src="~/Content/CssAdmin/assets/js/core/jquery.min.js"></script>
+        <script src="~/Content/CssAdmin/assets/js/core/popper.min.js"></script>
+        <script src="~/Content/CssAdmin/assets/js/core/bootstrap-material-design.min.js"></script>
+        <script src="https://unpkg.com/default-passive-events"></script>
+        <script src="~/Content/CssAdmin/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!-- Place this tag in your head or just before your close body tag. -->
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!-- Chartist JS -->
+        <script src="~/Content/CssAdmin/assets/js/plugins/chartist.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="~/Content/CssAdmin/assets/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="~/Content/CssAdmin/assets/js/material-dashboard.js"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="~/Content/CssAdmin/assets/demo/demo.js"></script>
+        <!--AVER SI ESTO NO AFECTA.... x.x-->
+
+        <script>
+            var Root = "@Url.Content("~/")";
+        </script>
+
+        <script src="~/Content/Dialog/Dialog.js"></script>
+    </body>
+
+</html>
+

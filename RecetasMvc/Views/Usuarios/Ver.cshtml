@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Ver";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var Usuarios = (List<RecetaSpawn.Domain.BO.TblUsuariosBO>)ViewBag.UsuarioLista;
+}
+
+@if (Usuarios.Count > 0)
+{
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Datos de los usuarios</h6>
+            <a href="@Url.Content("~/Usuarios/AgregarUsuario")" class="btn-default">Agregar</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="thead-dark">
+
+                        <tr align="center">
+                            <th scope="col" style="display:none">ID</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Correo</th>
+                            <th style="display:none" scope="col">Contraseña</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Rol</th>
+                            <th>Opcion</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (RecetaSpawn.Domain.BO.TblUsuariosBO item in Usuarios)
+                        {
+                            <tr>
+                                <td style="display:none">@item.IDUsuario</td>
+                                <td>@item.Nombre</td>
+                                <td>@item.Apellido</td>
+                                <td>@item.Correo</td>
+                                <td style="display:none">@item.Contraseña</td>
+                                <td>@item.Genero</td>
+                                <td>@item.Rol</td>
+                                <td align="center">
+                                    <button type="button" onclick="Usuario.evts.getUsuarioData('@item.IDUsuario', '@item.Nombre', '@item.Apellido', '@item.Correo', '@item.Contraseña')" class="btn btn-warning btn-sm" data-toggle="tooltip">Editar</button>
+                                    <button type="button" onclick="Usuario.evts.DeleteUser('@item.IDUsuario')" class="btn btn-danger btn-sm">Eliminar</button>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h2> Sin resultados</h2>
+
+}
+
+
+
+<!-- UPDATE -->
+<div class="modal fade" tabindex="-1" role="dialog" id="mdlDetail">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <form id="formulario" class="modal-content" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UsuarioStr">Actualizar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--BODY BODY BODY-->
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Nombre(s):</label>
+                            <input type="text" autocomplete="off" class="form-control" name="nombre" id="nombre" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Apellido(s):</label>
+                            <input type="text" autocomplete="off" class="form-control" name="apellido" id="apellido" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Correo:</label>
+                            <input type="text" autocomplete="off" class="form-control" name="correo" id="correo" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Contraseña:</label>
+                            <input type="text" autocomplete="off" class="form-control" name="contraseña" id="contraseña" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/Usuario.js"></script>
+<script>
+    $(function () {
+        Usuario.init();
+    });
+</script>

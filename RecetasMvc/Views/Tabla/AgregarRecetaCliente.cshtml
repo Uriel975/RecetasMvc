@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "AgregarRecetaCliente";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Agregar Receta
+    </div>
+    <div class="card-body">
+        <form method="post" id="formulario">
+            <div class="group form-group">
+                <input type="hidden" class="form-control" asp-for="ID_Recetas">
+                <fieldset>
+
+                    <legend>Datos de la receta</legend>
+                    <div class="row col-lg-12">
+                        <div class="col-md-4">
+                            <label class="label">Receta</label>
+                            <input type="text" class="form-control" id="receta">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="label">Tiempo</label>
+                            <input type="text" class="form-control" id="tiempo">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="label ">Ingredientes</label>
+                            <textarea class="form-control" id="ingredientes"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="label ">Preparacion</label>
+                            <textarea class="form-control" id="preparacion"></textarea>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Guardar</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/Recetas.js"></script>
+<script>
+            $(function () {
+                Recetas.init();
+            });
+</script>
+
+
